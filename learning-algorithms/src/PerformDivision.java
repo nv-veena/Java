@@ -42,21 +42,21 @@ public class PerformDivision {
     }
     
     private int divideHelper(int dividend, int divisor,boolean isSameSign){
-        int res = 0;
-        int currentDivisor = divisor;
-        while(dividend<=divisor){
-            int temp = 1;            
-            while( (currentDivisor << 1) >=dividend && 
-            		(currentDivisor << 1) <0 ){		//Keep shifting Divisor Left and make sure its less than Dividend
-                temp <<=1;				//Leftshift of divisor causes Quotient to double
-                currentDivisor <<=1;	//leftshift divisor
-            }
-            dividend -= currentDivisor;
-            res += temp;		//res is the Quotient
-            currentDivisor = divisor;
-        } 
-        int remainder = isSameSign ? dividend : -dividend;
-        System.out.println("Remainder is :" + remainder);
-       return res;
+    	int res = 0;
+    	int currentDivisor = divisor;
+    	while(dividend<=divisor){
+    		int temp = 1;            
+    		while( (currentDivisor << 1) >=dividend && 
+    				(currentDivisor << 1) <0 ){		//Keep shifting Divisor Left and make sure its less than Dividend
+    			temp <<=1;				//Leftshift of divisor causes Quotient to double
+    			currentDivisor <<=1;	//leftshift divisor
+    		}
+    		dividend -= currentDivisor;
+    		res += temp;		//res is the Quotient
+    		currentDivisor = divisor;
+    	} 
+    	int remainder = isSameSign ? dividend : -dividend;
+    	System.out.println("Remainder is :" + remainder);
+    	return res;
     }
 }
