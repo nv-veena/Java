@@ -11,27 +11,32 @@ public class PerformDivision {
 
 	public static void main(String[] args) {
 		//n1 is dividend, n2 is divisor
-		int n1 = -256,n2 = -3;
+		int n1 = 84,n2 = 3;
 		System.out.println(Integer.toBinaryString(n1));
 		PerformDivision tst = new PerformDivision();
-		tst.divideUsingBitManipulation(n1, n2);
+		tst.test(n1, n2);
 
 	}
 	
 	//Time Complexity is O(n1) where n1 is dividend,space complexity is 1
-	public void useRepeatedSubtraction(int n1,int n2) {
-		int sign = 1;
-		int q = 0;int r =0;
-		sign = ((n1<0 ) ^ (n2 < 0)) ? -1:1 ;
-		int divd = Math.abs(n1);
-		int divis = Math.abs(n2);
-		while(divd>=divis) {
-			q++;
-			divd = divd - divis;
-		}
-		r = divd;
-		q = sign * q;
-		System.out.println("Quotient is :" + q + " and the remainder is :" + r);
+	public void test(int dividend,int divisor) {
+		int res = 0;
+    	int currentDivisor = divisor;
+    	while(dividend>=divisor){
+    		int temp = 1;            
+    		while( (currentDivisor << 1) <=dividend && //Checking for greater than dividend because both divisor and dividend are negative
+    													//and in negative integers the divisor value has to be greater 
+    				(currentDivisor << 1) >0 ){		//Keep shifting Divisor Left and make sure its less than Dividend
+    			temp <<=1;				//Leftshift of divisor causes Quotient to double
+    			currentDivisor <<=1;	//leftshift divisor
+    		}
+    		dividend -= currentDivisor;
+    		res += temp;		//res is the Quotient
+    		currentDivisor = divisor;
+    	} 
+    	
+    	System.out.println("Remainder is :" + dividend);
+    	System.out.println("Quotient is :" + res);
 	}
 	public void divideUsingBitManipulation(int dividend, int divisor) {
         if(dividend == Integer.MIN_VALUE && divisor == -1) 
