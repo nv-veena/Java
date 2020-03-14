@@ -32,13 +32,17 @@ public class NumberOfSubStringsContainingAllThreeCharacters {
 		NumberOfSubStringsContainingAllThreeCharacters test = new NumberOfSubStringsContainingAllThreeCharacters();
 		System.out.println(test.numberOfSubstrings(s));
 
-	}
+	} 
 	public int numberOfSubstrings(String s) {
-		int[] arr=new int[3];
+		int[] arr=new int[3]; //Since array contains only 3 characters, build a array of size 3 
 		int ans=0;
 		for(int low=0,hi=0;hi<s.length();hi++) {
 			++arr[s.charAt(hi)-'a'];
-			while(arr[0]>0 && arr[1]>0 && arr[2]>0) {
+			
+			//As long as there is each character, count them
+			//for the length of string which will give the total number
+			//of strings that can be formed
+			while(arr[0]>0 && arr[1]>0 && arr[2]>0) { 
 				ans+=s.length()-hi;
 				--arr[s.charAt(low)-'a'];
 				low++;

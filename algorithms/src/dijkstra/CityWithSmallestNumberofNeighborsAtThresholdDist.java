@@ -40,6 +40,9 @@ public class CityWithSmallestNumberofNeighborsAtThresholdDist {
 	           dist[i][i]=0;   //If source and destination cities are the same then distance=0
 	       }
 	        
+	       //For each city, find the lowest cost distance to other destinations
+	       //by populating a 2D array. This is required because this is undirected graph 
+	       //where the route can go from any direction
 	        for(int city = 0; city < n; city++){
 	            dijsktra(city, g, n,dist[city]);
 	        }
@@ -83,7 +86,8 @@ public class CityWithSmallestNumberofNeighborsAtThresholdDist {
                 int toCity = c[0], distance = c[1];
                 if(costs[toCity] > costs[currentCity] + distance){
                 	//set the cost to the destination city with smallest cost
-                	//from source city
+                	//from source city which includes cost to go to SourceCity
+                	//+the cost to go to destination city
                     costs[toCity] = costs[currentCity] + distance;
                     queue.add(toCity);   
                 }
